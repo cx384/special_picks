@@ -65,9 +65,18 @@ minetest.register_craftitem("special_picks:silk_touch_diamond", {
 minetest.register_craft({
 	output = "special_picks:silk_touch_diamond",
 	recipe = {
-		{"default:coal_lump", "default:coalblock","default:coal_lump"},
+		{"group:wool", "default:coalblock","group:wool"},
 		{"default:obsidian", "default:diamond","default:obsidian"},
-		{"default:coal_lump", "default:obsidian","default:coal_lump"},
+		{"group:wool", "default:obsidian","group:wool"},
+	}
+})
+
+minetest.register_craft({
+	output = "special_picks:silk_touch_pick",
+	recipe = {
+		{"special_picks:silk_touch_diamond", "special_picks:silk_touch_diamond", "special_picks:silk_touch_diamond"},
+		{"", "group:stick", ""},
+		{"", "group:stick", ""},
 	}
 })
 
@@ -107,10 +116,6 @@ local allowed_nodes = { "default:stone_with_coal","default:stone_with_iron","def
 add_tool("special_picks:fortune_pick", function(digger, oldnode)
 	local nam = oldnode.name
 	local nodei = minetest.registered_nodes[nam]
-	local cracky = nodei.groups.cracky
-	if not cracky then
-		return
-	end
 	if not table_contains(nam, allowed_nodes) then
 		return
 	end
@@ -129,6 +134,24 @@ end)
 minetest.register_craftitem("special_picks:fortune_diamond", {
 	description = "fortune diamond",
 	inventory_image = "default_diamond.png",
+})
+
+minetest.register_craft({
+	output = "special_picks:fortune_diamond",
+	recipe = {
+		{"default:goldblock", "default:mese", "default:goldblock"},
+		{"default:bronzeblock", "default:diamond", "default:bronzeblock"},
+		{"default:steelblock", "default:mese", "default:steelblock"},
+	}
+})
+
+minetest.register_craft({
+	output = "special_picks:fortune_pick",
+	recipe = {
+		{"special_picks:fortune_diamond", "special_picks:fortune_diamond", "special_picks:fortune_diamond"},
+		{"", "group:stick", ""},
+		{"", "group:stick", ""},
+	}
 })
 
 --big diamond pick
@@ -168,6 +191,19 @@ minetest.register_tool("special_picks:battle_pick", {
 		},
 		damage_groups = {fleshy=10},
 	},
+})
+
+minetest.register_craftitem("special_picks:abrasive_paper", {
+	description = "abrasive paper",
+	inventory_image = "default_paper.png",
+})
+
+minetest.register_craft({
+	output = "special_picks:abrasive_paper",
+	recipe = {
+		{"default:sandstone", "default:sandstone", "default:sandstone"},
+		{"default:paper", "default:paper", "default:paper"},
+	}
 })
 
 

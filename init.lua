@@ -100,7 +100,7 @@ minetest.register_tool("special_picks:battle_pick", {
 
 minetest.register_tool("special_picks:fortune_pick", {
 	description = "fortune pick",
-	inventory_image = "default_tool_diamondpick.png",
+	inventory_image = "special_picks_fortune_pick.png",
 	tool_capabilities = {
 		full_punch_interval = 0.9,
 		max_drop_level=3,
@@ -115,7 +115,6 @@ local allowed_nodes = { "default:stone_with_coal","default:stone_with_iron","def
 
 add_tool("special_picks:fortune_pick", function(digger, oldnode)
 	local nam = oldnode.name
-	local nodei = minetest.registered_nodes[nam]
 	if not table_contains(nam, allowed_nodes) then
 		return
 	end

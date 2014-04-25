@@ -11,7 +11,7 @@ end
 
 minetest.register_tool("special_picks:silk_touch_pick", {
 	description = "silk touch pick",
-	inventory_image = "silk_touch_pick.png",
+	inventory_image = "special_picks_silk_touch_pick.png",
 	tool_capabilities = {
 		full_punch_interval = 0.9,
 		max_drop_level=3,
@@ -59,7 +59,7 @@ end)
 
 minetest.register_craftitem("special_picks:silk_touch_diamond", {
 	description = "silk touch diamond",
-	inventory_image = "silk_touch_diamond.png",
+	inventory_image = "special_picks_silk_touch_diamond.png",
 })
 
 minetest.register_craft({
@@ -85,7 +85,7 @@ minetest.register_craft({
 
 minetest.register_tool("special_picks:battle_pick", {
 	description = "battle pick",
-	inventory_image = "default_tool_diamondpick.png",
+	inventory_image = "special_picks_default_tool_diamondpick.png",
 	tool_capabilities = {
 		full_punch_interval = 0.9,
 		max_drop_level=3,
@@ -100,7 +100,7 @@ minetest.register_tool("special_picks:battle_pick", {
 
 minetest.register_tool("special_picks:fortune_pick", {
 	description = "fortune pick",
-	inventory_image = "fortune_pick.png",
+	inventory_image = "special_picks_fortune_pick.png",
 	tool_capabilities = {
 		full_punch_interval = 0.9,
 		max_drop_level=3,
@@ -132,7 +132,7 @@ end)
 
 minetest.register_craftitem("special_picks:fortune_diamond", {
 	description = "fortune diamond",
-	inventory_image = "fortune_diamond.png",
+	inventory_image = "special_picks_fortune_diamond.png",
 })
 
 minetest.register_craft({
@@ -157,7 +157,7 @@ minetest.register_craft({
 
 minetest.register_tool("special_picks:big_diamondpick", {
 	description = "big diamond pick",
-	inventory_image = "big_diamondpick.png",
+	inventory_image = "special_picks_big_diamondpick.png",
 	tool_capabilities = {
 		full_punch_interval = 0.9,
 		max_drop_level=3,
@@ -181,7 +181,7 @@ minetest.register_craft({
 
 minetest.register_tool("special_picks:battle_pick", {
 	description = "battle pick",
-	inventory_image = "battle_pick.png",
+	inventory_image = "special_picks_battle_pick.png",
 	tool_capabilities = {
 		full_punch_interval = 0.9,
 		max_drop_level=3,
@@ -194,12 +194,12 @@ minetest.register_tool("special_picks:battle_pick", {
 
 minetest.register_craftitem("special_picks:abrasive_paper", {
 	description = "abrasive paper",
-	inventory_image = "abrasive_paper.png",
+	inventory_image = "special_picks_abrasive_paper.png",
 })
 
 minetest.register_craftitem("special_picks:pointed_diamond", {
 	description = "pointed diamond",
-	inventory_image = "pointed_diamond.png",
+	inventory_image = "special_picks_pointed_diamond.png",
 })
 
 minetest.register_craft({

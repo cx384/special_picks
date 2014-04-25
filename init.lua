@@ -10,7 +10,7 @@ end
 --silk touch pick
 
 minetest.register_tool("special_picks:silk_touch_pick", {
-	description = "silk touch pick",
+	description = "Silk Touch Pickaxe",
 	inventory_image = "special_picks_silk_touch_pick.png",
 	tool_capabilities = {
 		full_punch_interval = 0.9,
@@ -58,7 +58,7 @@ add_tool("special_picks:silk_touch_pick", function(digger, oldnode)
 end)
 
 minetest.register_craftitem("special_picks:silk_touch_diamond", {
-	description = "silk touch diamond",
+	description = "Silk Touch Diamond",
 	inventory_image = "special_picks_silk_touch_diamond.png",
 })
 
@@ -80,26 +80,10 @@ minetest.register_craft({
 	}
 })
 
-
---battle pick
-
-minetest.register_tool("special_picks:battle_pick", {
-	description = "battle pick",
-	inventory_image = "special_picks_default_tool_diamondpick.png",
-	tool_capabilities = {
-		full_punch_interval = 0.9,
-		max_drop_level=3,
-		groupcaps={
-			cracky = {times={[1]=2.0, [2]=1.0, [3]=0.50}, uses=30, maxlevel=3}
-		},
-		damage_groups = {fleshy=10},
-	},
-})
-
 --fortune pick
 
 minetest.register_tool("special_picks:fortune_pick", {
-	description = "fortune pick",
+	description = "Fortune Pickaxe",
 	inventory_image = "special_picks_fortune_pick.png",
 	tool_capabilities = {
 		full_punch_interval = 0.9,
@@ -131,7 +115,7 @@ add_tool("special_picks:fortune_pick", function(digger, oldnode)
 end)
 
 minetest.register_craftitem("special_picks:fortune_diamond", {
-	description = "fortune diamond",
+	description = "Fortune Diamond",
 	inventory_image = "special_picks_fortune_diamond.png",
 })
 
@@ -156,7 +140,7 @@ minetest.register_craft({
 --big diamond pick
 
 minetest.register_tool("special_picks:big_diamondpick", {
-	description = "big diamond pick",
+	description = "Big Diamond Pickaxe",
 	inventory_image = "special_picks_big_diamondpick.png",
 	tool_capabilities = {
 		full_punch_interval = 0.9,
@@ -180,7 +164,7 @@ minetest.register_craft({
 --battle pick
 
 minetest.register_tool("special_picks:battle_pick", {
-	description = "battle pick",
+	description = "Battle Pickaxe",
 	inventory_image = "special_picks_battle_pick.png",
 	tool_capabilities = {
 		full_punch_interval = 0.9,
@@ -193,12 +177,12 @@ minetest.register_tool("special_picks:battle_pick", {
 })
 
 minetest.register_craftitem("special_picks:abrasive_paper", {
-	description = "abrasive paper",
+	description = "Abrasive Paper",
 	inventory_image = "special_picks_abrasive_paper.png",
 })
 
 minetest.register_craftitem("special_picks:pointed_diamond", {
-	description = "pointed diamond",
+	description = "Pointed Diamond",
 	inventory_image = "special_picks_pointed_diamond.png",
 })
 
@@ -231,8 +215,8 @@ minetest.register_craft({
 --fire pick
 
 minetest.register_tool("special_picks:fire_pick", {
-	description = "fire pick",
-	inventory_image = "default_tool_diamondpick.png",
+	description = "Fire Pickaxe",
+	inventory_image = "special_picks_fire_pick.png",
 	tool_capabilities = {
 		full_punch_interval = 0.9,
 		max_drop_level=3,
@@ -255,8 +239,38 @@ add_tool("special_picks:fire_pick", function(digger, node)
 		for _,item in ipairs(drops) do
 			inv:remove_item("main", item)
 		end
-		print(dump(result))
 		inv:add_item("main", result)
 	end
 end)
+
+minetest.register_craftitem("special_picks:hot_diamond", {
+	description = "Hot Diamond",
+	inventory_image = "special_picks_hot_diamond.png",
+})
+
+minetest.register_craft({
+	output = "special_picks:hot_diamond",
+	recipe = {
+		{"default:coalblock", "bucket:bucket_lava", "default:coalblock"},
+		{"bucket:bucket_lava", "default:diamond", "bucket:bucket_lava"},
+		{"default:coal_lump", "bucket:bucket_lava", "default:coal_lump"},
+	},
+	replacements = {
+		{"default:coalblock", "default:coal_lump"},
+		{"default:coalblock", "default:coal_lump"},
+		{"bucket:bucket_lava", "bucket:bucket_empty"},
+		{"bucket:bucket_lava", "bucket:bucket_empty"},
+		{"bucket:bucket_lava", "bucket:bucket_empty"},
+		{"bucket:bucket_lava", "bucket:bucket_empty"},
+	}
+})
+
+minetest.register_craft({
+	output = "special_picks:silk_touch_pick",
+	recipe = {
+		{"special_picks:hot_diamond", "special_picks:hot_diamond", "special_picks:hot_diamond"},
+		{"", "group:stick", ""},
+		{"", "group:stick", ""},
+	}
+})
 

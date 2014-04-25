@@ -115,7 +115,6 @@ local allowed_nodes = { "default:stone_with_coal","default:stone_with_iron","def
 
 add_tool("special_picks:fortune_pick", function(digger, oldnode)
 	local nam = oldnode.name
-	local nodei = minetest.registered_nodes[nam]
 	if not table_contains(nam, allowed_nodes) then
 		return
 	end

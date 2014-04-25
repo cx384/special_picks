@@ -244,21 +244,19 @@ minetest.register_tool("special_picks:fire_pick", {
 })
 
 add_tool("special_picks:fire_pick", function(digger, node)
-	local nam = node.name
-	local result = minetest.get_craft_result({method = "cooking", })
-	local nodei = minetest.registered_nodes[nam]
-	if not table_contains(nam, allowed_nodes) then
-		return
-	end
-	if math.random(2) == 1 then
-		return
-	end
 	local inv = digger:get_inventory()
 	if inv then
-		local items = minetest.get_node_drops(nam)
-		for _,item in ipairs(items) do
-			inv:add_item("main", item)
+		local nam = node.name
+		local drops = minetest.get_node_drops(nam)
+		local result = minetest.get_craft_result({method = "cooking", width = 1, items = drops})["item"]
+		if result:is_empty() then
+			return
 		end
+		for _,item in ipairs(drops) do
+			inv:remove_item("main", item)
+		end
+		print(dump(result))
+		inv:add_item("main", result)
 	end
 end)
 

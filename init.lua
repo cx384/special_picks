@@ -11,7 +11,7 @@ end
 
 minetest.register_tool("special_picks:silk_touch_pick", {
 	description = "silk touch pick",
-	inventory_image = "default_tool_diamondpick.png",
+	inventory_image = "silk_touch_pick.png",
 	tool_capabilities = {
 		full_punch_interval = 0.9,
 		max_drop_level=3,
@@ -59,7 +59,7 @@ end)
 
 minetest.register_craftitem("special_picks:silk_touch_diamond", {
 	description = "silk touch diamond",
-	inventory_image = "default_diamond.png",
+	inventory_image = "silk_touch_diamond.png",
 })
 
 minetest.register_craft({
@@ -100,7 +100,7 @@ minetest.register_tool("special_picks:battle_pick", {
 
 minetest.register_tool("special_picks:fortune_pick", {
 	description = "fortune pick",
-	inventory_image = "default_tool_diamondpick.png",
+	inventory_image = "fortune_pick.png",
 	tool_capabilities = {
 		full_punch_interval = 0.9,
 		max_drop_level=3,
@@ -133,14 +133,14 @@ end)
 
 minetest.register_craftitem("special_picks:fortune_diamond", {
 	description = "fortune diamond",
-	inventory_image = "default_diamond.png",
+	inventory_image = "fortune_diamond.png",
 })
 
 minetest.register_craft({
 	output = "special_picks:fortune_diamond",
 	recipe = {
 		{"default:goldblock", "default:mese", "default:goldblock"},
-		{"default:bronzeblock", "default:diamond", "default:bronzeblock"},
+		{"default:copperblock", "default:diamond", "default:copperblock"},
 		{"default:steelblock", "default:mese", "default:steelblock"},
 	}
 })
@@ -182,7 +182,7 @@ minetest.register_craft({
 
 minetest.register_tool("special_picks:battle_pick", {
 	description = "battle pick",
-	inventory_image = "default_tool_diamondpick.png",
+	inventory_image = "battle_pick.png",
 	tool_capabilities = {
 		full_punch_interval = 0.9,
 		max_drop_level=3,
@@ -195,20 +195,71 @@ minetest.register_tool("special_picks:battle_pick", {
 
 minetest.register_craftitem("special_picks:abrasive_paper", {
 	description = "abrasive paper",
-	inventory_image = "default_paper.png",
+	inventory_image = "abrasive_paper.png",
+})
+
+minetest.register_craftitem("special_picks:pointed_diamond", {
+	description = "pointed diamond",
+	inventory_image = "pointed_diamond.png",
 })
 
 minetest.register_craft({
-	output = "special_picks:abrasive_paper",
+	output = "special_picks:abrasive_paper 6",
 	recipe = {
 		{"default:sandstone", "default:sandstone", "default:sandstone"},
 		{"default:paper", "default:paper", "default:paper"},
 	}
 })
 
+minetest.register_craft({
+	output = "special_picks:pointed_diamond",
+	recipe = {
+		{"special_picks:abrasive_paper", "special_picks:abrasive_paper", "special_picks:abrasive_paper"},
+		{"special_picks:abrasive_paper", "default:diamond", "special_picks:abrasive_paper"},
+		{"special_picks:abrasive_paper", "special_picks:abrasive_paper", "special_picks:abrasive_paper"},
+	}
+})
 
+minetest.register_craft({
+	output = "special_picks:battle_pick",
+	recipe = {
+		{"special_picks:pointed_diamond", "special_picks:pointed_diamond", "special_picks:pointed_diamond"},
+		{"", "group:stick", ""},
+		{"", "group:stick", ""},
+	}
+})
 
+--fire pick
 
+minetest.register_tool("special_picks:fire_pick", {
+	description = "fire pick",
+	inventory_image = "default_tool_diamondpick.png",
+	tool_capabilities = {
+		full_punch_interval = 0.9,
+		max_drop_level=3,
+		groupcaps={
+			cracky = {times={[1]=2.0, [2]=1.0, [3]=0.50}, uses=30, maxlevel=3}
+		},
+		damage_groups = {fleshy=5},
+	},
+})
 
-
+add_tool("special_picks:fire_pick", function(digger, node)
+	local nam = node.name
+	local result = minetest.get_craft_result({method = "cooking", })
+	local nodei = minetest.registered_nodes[nam]
+	if not table_contains(nam, allowed_nodes) then
+		return
+	end
+	if math.random(2) == 1 then
+		return
+	end
+	local inv = digger:get_inventory()
+	if inv then
+		local items = minetest.get_node_drops(nam)
+		for _,item in ipairs(items) do
+			inv:add_item("main", item)
+		end
+	end
+end)
 

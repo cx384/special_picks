@@ -232,7 +232,7 @@ minetest.register_tool("special_picks:fire_pick", {
 		groupcaps={
 			cracky = {times={[1]=2.0, [2]=1.0, [3]=0.50}, uses=30, maxlevel=3}
 		},
-		damage_groups = {fleshy=5},
+		damage_groups = {fleshy=6},
 	},
 })
 
@@ -265,8 +265,8 @@ minetest.register_craft({
 		{"default:coal_lump", "bucket:bucket_lava", "default:coal_lump"},
 	},
 	replacements = {
-		{"default:coalblock", "default:coal_lump"},
-		{"default:coalblock", "default:coal_lump"},
+		{"default:coalblock", "default:coal_lump 2"},
+		{"default:coalblock", "default:coal_lump 2"},
 		{"bucket:bucket_lava", "bucket:bucket_empty"},
 		{"bucket:bucket_lava", "bucket:bucket_empty"},
 		{"bucket:bucket_lava", "bucket:bucket_empty"},
@@ -282,4 +282,21 @@ minetest.register_craft({
 		{"", "group:stick", ""},
 	}
 })
+
+--liquid transportation pick
+
+minetest.register_tool("special_picks:liquid_transportation_pick", {
+	description = "Liquid Transportation Pickaxe",
+	inventory_image = "special_picks_fire_pick.png",
+	tool_capabilities = {
+		full_punch_interval = 0.9,
+		max_drop_level=3,
+		groupcaps={
+			cracky = {times={[1]=2.0, [2]=1.0, [3]=0.50}, uses=30, maxlevel=3}
+		},
+		damage_groups = {fleshy=5},
+	},
+})
+
+
 

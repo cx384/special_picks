@@ -57,13 +57,13 @@ add_tool("special_picks:silk_touch_pick", function(digger, oldnode)
 	end
 end)
 
-minetest.register_craftitem("special_picks:silk_touch_diamond", {
-	description = "Silk Touch Diamond",
-	inventory_image = "special_picks_silk_touch_diamond.png",
+minetest.register_craftitem("special_picks:soft_diamond", {
+	description = "Soft Diamond",
+	inventory_image = "special_picks_soft_diamond.png",
 })
 
 minetest.register_craft({
-	output = "special_picks:silk_touch_diamond",
+	output = "special_picks:soft_diamond",
 	recipe = {
 		{"group:wool", "default:coalblock","group:wool"},
 		{"default:obsidian", "default:diamond","default:obsidian"},
@@ -74,7 +74,7 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "special_picks:silk_touch_pick",
 	recipe = {
-		{"special_picks:silk_touch_diamond", "special_picks:silk_touch_diamond", "special_picks:silk_touch_diamond"},
+		{"special_picks:soft_diamond", "special_picks:soft_diamond", "special_picks:soft_diamond"},
 		{"", "group:stick", ""},
 		{"", "group:stick", ""},
 	}
@@ -285,9 +285,95 @@ minetest.register_craft({
 
 --liquid transportation pick
 
-minetest.register_tool("special_picks:liquid_transportation_pick", {
-	description = "Liquid Transportation Pickaxe",
-	inventory_image = "special_picks_fire_pick.png",
+--minetest.register_tool("special_picks:liquid_transportation_pick", {
+--	description = "Liquid Transportation Pickaxe",
+--	inventory_image = "special_picks_fire_pick.png",
+--	tool_capabilities = {
+--		full_punch_interval = 0.9,
+--		max_drop_level=3,
+--		groupcaps={
+--			cracky = {times={[1]=2.0, [2]=1.0, [3]=0.50}, uses=30, maxlevel=3}
+--		},
+--		damage_groups = {fleshy=5},
+--	},
+--})
+
+--glass steel pick
+
+minetest.register_tool("special_picks:glass_steel_pick", {
+	description = "Glass Steel Pickaxe",
+	inventory_image = "special_picks_glass_steel_pick.png",
+	tool_capabilities = {
+		full_punch_interval = 0.9,
+		max_drop_level=3,
+		groupcaps={
+			cracky = {times={[1]=1.00, [2]=0.50, [3]=0.25}, uses=5, maxlevel=2},
+		},
+		damage_groups = {fleshy=4},
+	},
+})
+
+minetest.register_craftitem("special_picks:glass_steel_ingot", {
+	description = "Glass Steel Ingot",
+	inventory_image = "special_picks_glass_steel_ingot.png",
+})
+
+minetest.register_craft({
+	output = "special_picks:glass_steel_pick",
+	recipe = {
+		{"special_picks:glass_steel_ingot", "special_picks:glass_steel_ingot", "special_picks:glass_steel_ingot"},
+		{"", "group:stick", ""},
+		{"", "group:stick", ""},
+	}
+})
+
+minetest.register_node("special_picks:glass_steel_block", {
+	description = "Glass Steel Block",
+	drawtype = "glasslike",
+	tiles = {"special_picks_glass_steel_block.png"},
+	paramtype = "light",
+	sunlight_propagates = true,
+	is_ground_content = true,
+	groups = {cracky=1,level=2},
+	sounds = default.node_sound_glass_defaults(),
+})
+
+minetest.register_craft({
+	output = "special_picks:glass_steel_block",
+	recipe = {
+		{"special_picks:glass_steel_ingot", "special_picks:glass_steel_ingot", "special_picks:glass_steel_ingot"},
+		{"special_picks:glass_steel_ingot", "special_picks:glass_steel_ingot", "special_picks:glass_steel_ingot"},
+		{"special_picks:glass_steel_ingot", "special_picks:glass_steel_ingot", "special_picks:glass_steel_ingot"},
+	}
+})
+
+minetest.register_tool("special_picks:big_glass_steel_pick", {
+	description = "Big Glass Steel Pickaxe",
+	inventory_image = "special_picks_big_glass_steel_pick.png",
+	tool_capabilities = {
+		full_punch_interval = 0.9,
+		max_drop_level=3,
+		groupcaps={
+			cracky = {times={[1]=1.00, [2]=0.50, [3]=0.25}, uses=45, maxlevel=2},
+		},
+		damage_groups = {fleshy=4},
+	},
+})
+
+minetest.register_craft({
+	output = "special_picks:big_glass_steel_pick",
+	recipe = {
+		{"special_picks:glass_steel_block", "special_picks:glass_steel_block", "special_picks:glass_steel_block"},
+		{"", "group:stick", ""},
+		{"", "group:stick", ""},
+	}
+})
+
+--explosion pick
+
+minetest.register_tool("special_picks:explosion_pick", {
+	description = "Explosion Pickaxe",
+	inventory_image = "special_picks_explosion_pick.png",
 	tool_capabilities = {
 		full_punch_interval = 0.9,
 		max_drop_level=3,
@@ -298,5 +384,5 @@ minetest.register_tool("special_picks:liquid_transportation_pick", {
 	},
 })
 
-
+--i need help with this pick
 

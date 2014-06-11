@@ -41,6 +41,16 @@ end)
 add_tool("special_picks:silk_touch_pick", function(digger, oldnode)
 	local inv = digger:get_inventory()
 	if inv then
+		local free_slots = 0
+		for _,i in pairs(inv:get_list("main")) do
+			if i:get_count() == 0 then
+				free_slots = free_slots+1
+				break
+			end
+		end
+		if free_slots == 0 then
+			return
+		end
 		local nd = oldnode.name
 		local items = minetest.get_node_drops(nd)
 		local first_item = items[1]
@@ -285,18 +295,18 @@ minetest.register_craft({
 
 --liquid transportation pick
 
---minetest.register_tool("special_picks:liquid_transportation_pick", {
---	description = "Liquid Transportation Pickaxe",
---	inventory_image = "special_picks_fire_pick.png",
---	tool_capabilities = {
---		full_punch_interval = 0.9,
---		max_drop_level=3,
---		groupcaps={
---			cracky = {times={[1]=2.0, [2]=1.0, [3]=0.50}, uses=30, maxlevel=3}
---		},
---		damage_groups = {fleshy=5},
---	},
---})
+--[[minetest.register_tool("special_picks:liquid_transportation_pick", {
+	description = "Liquid Transportation Pickaxe",
+	inventory_image = "special_picks_fire_pick.png",
+	tool_capabilities = {
+		full_punch_interval = 0.9,
+		max_drop_level=3,
+		groupcaps={
+			cracky = {times={[1]=2.0, [2]=1.0, [3]=0.50}, uses=30, maxlevel=3}
+		},
+		damage_groups = {fleshy=5},
+	},
+})]]
 
 --glass steel pick
 
@@ -371,7 +381,7 @@ minetest.register_craft({
 
 --explosion pick
 
-minetest.register_tool("special_picks:explosion_pick", {
+--[[minetest.register_tool("special_picks:explosion_pick", {
 	description = "Explosion Pickaxe",
 	inventory_image = "special_picks_explosion_pick.png",
 	tool_capabilities = {
@@ -382,7 +392,7 @@ minetest.register_tool("special_picks:explosion_pick", {
 		},
 		damage_groups = {fleshy=5},
 	},
-})
+})]]
 
 --i need help with this pick
 

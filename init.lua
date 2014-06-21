@@ -175,8 +175,8 @@ minetest.register_craft({
 	output = "special_picks:big_diamondpick",
 	recipe = {
 		{"default:diamondblock", "default:diamondblock", "default:diamondblock"},
-		{"", "default:tree", ""},
-		{"", "default:tree", ""},
+		{"", "group:tree", ""},
+		{"", "group:tree", ""},
 	}
 })
 
@@ -206,7 +206,7 @@ minetest.register_craftitem("special_picks:pointed_diamond", {
 })
 
 minetest.register_craft({
-	output = "special_picks:abrasive_paper 6",
+	output = "special_picks:abrasive_paper 3",
 	recipe = {
 		{"default:sandstone", "default:sandstone", "default:sandstone"},
 		{"default:paper", "default:paper", "default:paper"},
@@ -216,9 +216,9 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "special_picks:pointed_diamond",
 	recipe = {
-		{"special_picks:abrasive_paper", "special_picks:abrasive_paper", "special_picks:abrasive_paper"},
+		{"", "special_picks:abrasive_paper", ""},
 		{"special_picks:abrasive_paper", "default:diamond", "special_picks:abrasive_paper"},
-		{"special_picks:abrasive_paper", "special_picks:abrasive_paper", "special_picks:abrasive_paper"},
+		{"", "special_picks:abrasive_paper", ""},
 	}
 })
 
@@ -317,7 +317,7 @@ minetest.register_tool("special_picks:glass_steel_pick", {
 		full_punch_interval = 0.9,
 		max_drop_level=3,
 		groupcaps={
-			cracky = {times={[1]=1.00, [2]=0.50, [3]=0.25}, uses=5, maxlevel=2},
+			cracky = {times={[1]=1.00, [2]=0.50, [3]=0.25}, uses=8, maxlevel=2},
 		},
 		damage_groups = {fleshy=4},
 	},
@@ -326,6 +326,15 @@ minetest.register_tool("special_picks:glass_steel_pick", {
 minetest.register_craftitem("special_picks:glass_steel_ingot", {
 	description = "Glass Steel Ingot",
 	inventory_image = "special_picks_glass_steel_ingot.png",
+})
+
+minetest.register_craft({
+	output = "special_picks:glass_steel_ingot",
+	recipe = {
+		{"default:glass", "default:glass", "default:glass"},
+		{"default:glass", "default:steel_ingot", "default:glass"},
+		{"default:glass", "default:glass", "default:glass"},
+	}
 })
 
 minetest.register_craft({
@@ -364,7 +373,7 @@ minetest.register_tool("special_picks:big_glass_steel_pick", {
 		full_punch_interval = 0.9,
 		max_drop_level=3,
 		groupcaps={
-			cracky = {times={[1]=1.00, [2]=0.50, [3]=0.25}, uses=45, maxlevel=2},
+			cracky = {times={[1]=1.00, [2]=0.50, [3]=0.25}, uses=72, maxlevel=2},
 		},
 		damage_groups = {fleshy=4},
 	},
@@ -374,8 +383,8 @@ minetest.register_craft({
 	output = "special_picks:big_glass_steel_pick",
 	recipe = {
 		{"special_picks:glass_steel_block", "special_picks:glass_steel_block", "special_picks:glass_steel_block"},
-		{"", "group:stick", ""},
-		{"", "group:stick", ""},
+		{"", "group:tree", ""},
+		{"", "group:tree", ""},
 	}
 })
 

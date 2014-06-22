@@ -105,7 +105,7 @@ minetest.register_tool("special_picks:fortune_pick", {
 	},
 })
 
-local allowed_nodes = {"moreores:mineral_silver","moreores:mineral_mithril","moreores:mineral_tin","default:stone_with_coal","default:stone_with_iron","default:stone_with_copper","default:stone_with_mese", "default:stone_with_gold","default:stone_with_diamond"}
+local allowed_nodes = {"default:mineral_silver","default:mineral_tin","default:mineral_copper", "moreores:mineral_silver","moreores:mineral_mithril","moreores:mineral_tin","default:stone_with_coal","default:stone_with_iron","default:stone_with_copper","default:stone_with_mese", "default:stone_with_gold","default:stone_with_diamond"}
 
 add_tool("special_picks:fortune_pick", function(digger, oldnode)
 	local nam = oldnode.name
@@ -146,6 +146,16 @@ minetest.register_craft({
 		{"default:steelblock", "moreores:mithril_block", "default:steelblock"},
 	}
 })
+
+minetest.register_craft({
+	output = "special_picks:fortune_diamond",
+	recipe = {
+		{"default:silverblock", "default:mese", "default:silverblock"},
+		{"default:tinblock", "default:diamond", "default:tinblock"},
+		{"default:copperblock", "default:mese", "default:copperblock"},
+	}
+})
+
 
 minetest.register_craft({
 	output = "special_picks:fortune_pick",

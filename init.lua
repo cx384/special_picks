@@ -7,19 +7,15 @@ local function table_contains(v, t)
 	return false
 end
 
+local diamond_capabs = minetest.registered_tools["default:pick_diamond"].tool_capabilities
+
+
 --silk touch pick
 
 minetest.register_tool("special_picks:silk_touch_pick", {
 	description = "Silk Touch Pickaxe",
 	inventory_image = "special_picks_silk_touch_pick.png",
-	tool_capabilities = {
-		full_punch_interval = 0.9,
-		max_drop_level=3,
-		groupcaps={
-			cracky = {times={[1]=2.0, [2]=1.0, [3]=0.50}, uses=30, maxlevel=3}
-		},
-		damage_groups = {fleshy=5},
-	},
+	tool_capabilities = diamond_capabs,
 })
 
 local special_tools = {}
@@ -90,19 +86,13 @@ minetest.register_craft({
 	}
 })
 
+
 --fortune pick
 
 minetest.register_tool("special_picks:fortune_pick", {
 	description = "Fortune Pickaxe",
 	inventory_image = "special_picks_fortune_pick.png",
-	tool_capabilities = {
-		full_punch_interval = 0.9,
-		max_drop_level=3,
-		groupcaps={
-			cracky = {times={[1]=2.0, [2]=1.0, [3]=0.50}, uses=30, maxlevel=3}
-		},
-		damage_groups = {fleshy=5},
-	},
+	tool_capabilities = diamond_capabs,
 })
 
 local allowed_nodes = {"default:mineral_silver","default:mineral_tin","default:mineral_copper", "moreores:mineral_silver","moreores:mineral_mithril","moreores:mineral_tin","default:stone_with_coal","default:stone_with_iron","default:stone_with_copper","default:stone_with_mese", "default:stone_with_gold","default:stone_with_diamond"}
@@ -166,19 +156,16 @@ minetest.register_craft({
 	}
 })
 
+
 --big diamond pick
+
+local capabs = table.copy(diamond_capabs)
+capabs.groupcaps.cracky.uses = capabs.groupcaps.cracky.uses*9
 
 minetest.register_tool("special_picks:big_diamondpick", {
 	description = "Big Diamond Pickaxe",
 	inventory_image = "special_picks_big_diamondpick.png",
-	tool_capabilities = {
-		full_punch_interval = 0.9,
-		max_drop_level=3,
-		groupcaps={
-			cracky = {times={[1]=2.0, [2]=1.0, [3]=0.50}, uses=270, maxlevel=3}
-		},
-		damage_groups = {fleshy=5},
-	},
+	tool_capabilities = capabs,
 })
 
 minetest.register_craft({
@@ -190,19 +177,16 @@ minetest.register_craft({
 	}
 })
 
+
 --battle pick
+
+local capabs = table.copy(diamond_capabs)
+capabs.damage_groups.fleshy = capabs.damage_groups.fleshy*2
 
 minetest.register_tool("special_picks:battle_pick", {
 	description = "Battle Pickaxe",
 	inventory_image = "special_picks_battle_pick.png",
-	tool_capabilities = {
-		full_punch_interval = 0.9,
-		max_drop_level=3,
-		groupcaps={
-			cracky = {times={[1]=2.0, [2]=1.0, [3]=0.50}, uses=30, maxlevel=3}
-		},
-		damage_groups = {fleshy=10},
-	},
+	tool_capabilities = capabs,
 })
 
 minetest.register_craftitem("special_picks:abrasive_paper", {
@@ -241,19 +225,16 @@ minetest.register_craft({
 	}
 })
 
+
 --fire pick
+
+local capabs = table.copy(diamond_capabs)
+capabs.damage_groups.fleshy = capabs.damage_groups.fleshy+1
 
 minetest.register_tool("special_picks:fire_pick", {
 	description = "Fire Pickaxe",
 	inventory_image = "special_picks_fire_pick.png",
-	tool_capabilities = {
-		full_punch_interval = 0.9,
-		max_drop_level=3,
-		groupcaps={
-			cracky = {times={[1]=2.0, [2]=1.0, [3]=0.50}, uses=30, maxlevel=3}
-		},
-		damage_groups = {fleshy=6},
-	},
+	tool_capabilities = capabs,
 })
 
 add_tool("special_picks:fire_pick", function(digger, node)
@@ -303,6 +284,7 @@ minetest.register_craft({
 	}
 })
 
+
 --liquid transportation pick
 
 --[[minetest.register_tool("special_picks:liquid_transportation_pick", {
@@ -318,19 +300,22 @@ minetest.register_craft({
 	},
 })]]
 
+
 --glass steel pick
+
+local glass_pick_capabs = table.copy(diamond_capabs)
+local cracky = glass_pick_capabs.groupcaps.cracky
+for n,i in pairs(cracky.times) do
+	cracky.times[n] = i/2
+end
+cracky.uses = 8
+cracky.maxlevel = 2
+glass_pick_capabs.damage_groups.fleshy = glass_pick_capabs.damage_groups.fleshy-1
 
 minetest.register_tool("special_picks:glass_steel_pick", {
 	description = "Glass Steel Pickaxe",
 	inventory_image = "special_picks_glass_steel_pick.png",
-	tool_capabilities = {
-		full_punch_interval = 0.9,
-		max_drop_level=3,
-		groupcaps={
-			cracky = {times={[1]=1.00, [2]=0.50, [3]=0.25}, uses=8, maxlevel=2},
-		},
-		damage_groups = {fleshy=4},
-	},
+	tool_capabilities = glass_pick_capabs,
 })
 
 minetest.register_craftitem("special_picks:glass_steel_ingot", {
@@ -376,17 +361,13 @@ minetest.register_craft({
 	}
 })
 
+
+glass_pick_capabs.groupcaps.cracky.uses = glass_pick_capabs.groupcaps.cracky.uses*9
+
 minetest.register_tool("special_picks:big_glass_steel_pick", {
 	description = "Big Glass Steel Pickaxe",
 	inventory_image = "special_picks_big_glass_steel_pick.png",
-	tool_capabilities = {
-		full_punch_interval = 0.9,
-		max_drop_level=3,
-		groupcaps={
-			cracky = {times={[1]=1.00, [2]=0.50, [3]=0.25}, uses=72, maxlevel=2},
-		},
-		damage_groups = {fleshy=4},
-	},
+	tool_capabilities = glass_pick_capabs,
 })
 
 minetest.register_craft({

@@ -95,7 +95,7 @@ minetest.register_tool("special_picks:fortune_pick", {
 	tool_capabilities = diamond_capabs,
 })
 
-local allowed_nodes = {"default:mineral_silver","default:mineral_tin","default:mineral_copper", "moreores:mineral_silver","moreores:mineral_mithril","moreores:mineral_tin","default:stone_with_coal","default:stone_with_iron","default:stone_with_copper","default:stone_with_mese", "default:stone_with_gold","default:stone_with_diamond"}
+local allowed_nodes = {"technic:mineral_sulfur","technic:mineral_lead","technic:mineral_zinc","technic:mineral_chromium","technic:mineral_uranium","default:mineral_silver","default:mineral_tin","default:mineral_copper", "moreores:mineral_silver","moreores:mineral_mithril","moreores:mineral_tin","default:stone_with_coal","default:stone_with_iron","default:stone_with_copper","default:stone_with_mese", "default:stone_with_gold","default:stone_with_diamond"}
 
 add_tool("special_picks:fortune_pick", function(digger, oldnode)
 	local nam = oldnode.name
